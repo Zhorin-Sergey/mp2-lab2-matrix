@@ -140,25 +140,31 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 TEST(TVector, can_add_scalar_to_vector)
 {
   TVector<int> v(5), v1(5);
-  v1 = (v + 7);
-  EXPECT_EQ(v1, v + 7);
+  for (int i = 0; i < 5; i++){
+    v[i] = 6;
+    v1[i] = 12;
+  }
+  EXPECT_EQ(v1, v + 6);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
   TVector<int> v(5), v1(5);
-  v1 = (v - 7);
-  EXPECT_EQ(v1, v - 7);
+  for (int i = 0; i < 5; i++){
+    v[i] = 6;
+    v1[i] = 5;
+  }
+  EXPECT_EQ(v1, v - 1);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
-  TVector<int> v(5);
-  for (int i = 0; i < 5; i++)
+  TVector<int> v(5),v1(5);
+  for (int i = 0; i < 5; i++){
     v[i] = 6;
-  TVector<int> v1(5);
-  v1 = (v * 7);
-  EXPECT_EQ(v1, v * 7);
+    v1[i] = 12;
+  }
+  EXPECT_EQ(v1, v * 2);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
