@@ -173,8 +173,8 @@ TEST(TVector, can_add_vectors_with_equal_size)
   for (int i = 0; i < 5; i++) {
     v[i] = 6;
     v1[i] = 7;
+	v2[i] = 13;
   }
-  v2 = v1 + v;
   EXPECT_EQ(v2, v1 + v);
 }
 
@@ -190,8 +190,8 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
   for (int i = 0; i < 5; i++) {
     v[i] = 6;
     v1[i] = 7;
+	v2[i] = 1;
   }
-  v2 = v1 - v;
   EXPECT_EQ(v2, v1 - v);
 }
 
@@ -203,13 +203,12 @@ TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 
 TEST(TVector, can_multiply_vectors_with_equal_size)
 {
-  TVector<int> v(5), v1(5), v2(5);
+	TVector<int> v(5), v1(5);
   for (int i = 0; i < 5; i++) {
     v[i] = 6;
     v1[i] = 7;
   }
-  v2 = v1 * v;
-  EXPECT_EQ(v2, v1 * v);
+  EXPECT_EQ(210, v1 * v);
 }
 
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)

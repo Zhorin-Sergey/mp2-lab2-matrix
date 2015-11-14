@@ -72,16 +72,23 @@ TEST(TMatrix, throws_when_set_element_with_too_large_index)
 
 TEST(TMatrix, can_assign_matrix_to_itself)
 {
-  TMatrix<int> v(5);
-  ASSERT_NO_THROW(v = v);
+  TMatrix<int> v(5), v1(5);
+  for (int i = 0; i < 5; i++)
+    for (int j = i; j < 5; j++) {
+	  v[i][j] = i * 10 + j;
+	  v1[i][j] = i * 10 + j;
+  }
+  v = v;
+  EXPECT_EQ(v, v1);
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)
 {
   TMatrix<int> v(5), v1(5);
   for (int i = 0; i < 5; i++)
-    for (int j = i; j < 5; j++)
-	  v[i][j] = i * 10 + j;
+    for (int j = i; j < 5; j++) {
+      v[i][j] = i * 10 + j;
+    }
   v1 = v;
   EXPECT_EQ(v, v1);
 }
@@ -139,8 +146,8 @@ TEST(TMatrix, can_add_matrices_with_equal_size)
     {
       a[i][j] = i * 10 + j;
       b[i][j] = (i * 10 + j) * 100;
+	  c[i][j] = (((i * 10 + j) * 100) + (i * 10 + j));
     }
-  c = a + b;
   EXPECT_EQ(c, a + b);
 }
 
@@ -158,8 +165,8 @@ TEST(TMatrix, can_subtract_matrices_with_equal_size)
     {
       a[i][j] = i * 10 + j;
       b[i][j] = (i * 10 + j) * 100;
+	  c[i][j] = (((i * 10 + j) - (i * 10 + j) * 100));
     }
-  c = a - b;
   EXPECT_EQ(c, a - b);
 }
 
